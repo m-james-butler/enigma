@@ -1,0 +1,148 @@
+<div class="content">
+
+  <header>
+    <div class="row align-items-end">
+      <div class="col-md-6"><h1 class="margin-left-10">Enigma Machine</h1></div>
+      <div class="col-md-3 offset-md-3 align-self-end"><p class="right margin-right-10">As used by the German Army WWII</p></div>
+    </div>
+  </header>
+
+  <div class="overview">
+    <div class="row">
+      <h2 class="center">Message Board</h2>
+    </div>
+    <div class="row">
+      <div class="col-6 messageBox">
+        <p>Plain Text Message: {{ message }}</p>
+      </div>
+      <div class="col-6 messageBox">
+        <p>Encrypted Messge: {{ ciphered }}</p>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="overview">
+    <div class="row">
+      <h2 class="center">Settings</h2>
+    </div>
+    <div class="row">
+      <div class="col-4 messageBox">
+        <p class="center"><strong>Left Rotor: </strong> {{leftRotor}}</p>
+      </div>
+      <div class="col-4 messageBox">
+        <p class="center"><strong>Center Rotor: </strong> {{centerRotor}}</p>
+      </div>
+      <div class="col-4 messageBox">
+        <p class="center"><strong>Right Rotor: </strong> {{rightRotor}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 messageBox">
+        <p class="center"><strong>Reflector: </strong> {{reflector}}</p>
+      </div>
+      <div class="col-3 messageBox">
+        <p class="center"><strong>Key: </strong> {{key}}</p>
+      </div>
+      <div class="col-3 messageBox">
+        <p class="center"><strong>Ring: </strong> {{rings}}</p>
+      </div>
+      <div class="col-3 messageBox">
+        <p class="center"><strong>Pairs: </strong> {{pairs}}</p>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="overview">
+    <div class="row"><h2 class="center">Controls</h2></div>
+    <div class="row">
+      <div class="col-6 cb">
+        <div class="row"><h3 class="center">Rotors</h3></div>
+        <div class="row">
+          <div class="col-3">
+              <label>Left Rotor: </label> &nbsp;
+              <select matNativeControl [(ngModel)]="leftRotor" name="leftRotor" (ngModelChange)="changeLeft($event)">
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+              </select>
+          </div>
+          <div class="col-3">
+              <label>Center Rotor: </label> &nbsp;
+              <select matNativeControl [(ngModel)]="centerRotor" name="centerRotor" (ngModelChange)="changeCenter($event)">
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+              </select>
+          </div>
+          <div class="col-3">
+              <label>Right Rotor: </label> &nbsp;
+              <select matNativeControl [(ngModel)]="rightRotor" name="rightRotor" (ngModelChange)="changeRight($event)">
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+              </select>
+          </div>
+          <div class="col-3">
+              <label>Reflector: </label> &nbsp;
+              <select matNativeControl [(ngModel)]="reflector" name="reflector" (ngModelChange)="changeRef($event)">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+              </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 cb">
+        <div class="row"><h3 class="center">Board</h3></div>
+        <div class="row">
+          <div class="col-4">
+              <label>Key: </label> &nbsp;
+              <input type="text" [value]="key" #keyBox (keyup)="onKey(keyBox.value)" />
+          </div>
+          <div class="col-4">
+              <label>Rings: </label> &nbsp;
+              <input type="text" [value]="rings" #ringBox (keyup)="onRings(ringBox.value)" />
+          </div>
+          <div class="col-4">
+              <label>Pairs: </label> &nbsp;
+              <input type="text" [value]="pairs" #pairBox (keyup)="onPairs(pairBox.value)"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 cb">
+        <div class="row">
+          <h3 class="center">Input</h3>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <label>Message: </label>
+          </div>
+          <div class="col-8">
+            <input id="message" type="text" [value]="message" #messageBox />
+          </div>
+          <div class="col-2">
+            <button type="button" (click)="encipher(messageBox.value)">Encipher</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overview">
+    <div class="row"><h3 class="center">Instructions</h3></div>
+    <div class="row">
+      <p>This enigma machine is designed to work as similarly as reasonably practicable to a German army machine at the outbreak of the Second World War. Machines in use by the Kriegsmarine had some additional complications and extra rotors. As the war progressed, rotors were also introduced with more than one notch and other innovations that are not modeled here.</p>
+      <p>To change the rotors simply change the dropdown selection. In normal practice only one of each rotor was possessed by an operator, but the machine will function just fine with duplicate rotors.</p>
+      <p>The key is the starting position for each rotor. Note that the key is RIGHT INDEXED, meaning the rotors are set right to left. Using the default value that means the RIGHT rotor starts at D and the LEFT rotor will start at G.</p>
+      <p>The ring position is actually quite complicated, but the end effect is essentially equivalent to changing the notch position on the rotor. Enter this as a series of three integers from 0-25 separated by a space.</p>
+      <p>Pairs represent a simple substitution cypher. The letters in each pair will be swapped when entered. Using the default setting, for instance, will replace any A in your message with an R and any R with an A.</p>
+    </div>
+  </div>
+</div>

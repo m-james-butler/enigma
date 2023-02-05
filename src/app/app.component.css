@@ -1,0 +1,88 @@
+.content {
+    background-color: #EEE;
+    width: 85%;
+    margin: 0 auto;
+    border: 3px inset black;
+    border-radius: 5px;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.margin-right-10 {
+    margin-right: 10px;
+}
+
+.overview {
+    width:90%;
+    margin: 10px auto;
+    background-color: #CCC;
+    border: 3px double #00416A;
+    border-radius: 5px;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.bottom {
+    vertical-align: bottom;
+}
+
+.messageBox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.messageBox p {
+    width: auto;
+    padding-left: 10px;
+    margin: 0 10px;
+    background-color: black;
+    color: lawngreen;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+header {
+    color: #EEE;
+    background-color: #00416A;
+}
+
+.cb {
+    width: 47%;
+    margin: 0 auto 10px auto;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+input {
+    width: 67%;
+    margin-bottom: 10px;
+}
+
+#message {
+    width: 100%;
+}
+
+button {
+    background-color: #00416A;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+}
+
+button:hover {
+    border: 1px solid #00416A;
+    background-color: #32739c;
+}
+
+.row > p {
+    margin: 5px 10px;
+}
